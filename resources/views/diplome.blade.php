@@ -3,5 +3,31 @@
 @section('content')
     <main>
         <h1>Gestion des diplômes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Nom diplôme</th>
+                    <th>Niveau</th>
+                    <th>Nom université</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($diplomes as $diplome)
+                    <tr>
+                        <td>{{ $diplome->codeDiplome }}</td>
+                        <td>{{ $diplome->nomDiplome }}</td>
+                        <td>{{ $diplome->niveauDiplome }}</td>
+                        <td>
+                            @if ($diplome->universites)
+                                {{ $diplome->universites->nomU }}
+                            @else
+                                Aucune université associée
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </main>
 @endsection
