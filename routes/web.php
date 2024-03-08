@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('connexion');
+    return view('accueil');
 });
 
-Route::get('/accueil', function () {
-    return view('accueil');
+Route::get('/diplome', function () {
+    return view('diplome');
 });
