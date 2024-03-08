@@ -20,3 +20,27 @@ Route::get('/', function () {
 Route::get('/diplome', function () {
     return view('diplome');
 });
+
+Route::get('/programme', function () {
+    return view('programme');
+});
+
+Route::get('/cours', function () {
+    return view('cours');
+});
+
+Route::get('/gestionDemandeMobilite', function () {
+    return view('gestionDemandeMobilite');
+});
+
+Route::get('/contrat', function () {
+    return view('contrat');
+});
+
+Route::get('/gestionDemandeFinancement', function () {
+    return view('gestionDemandeFinancement');
+});
+
+Route::get('/utilisateur', function () {
+    return view('utilisateur');
+});
