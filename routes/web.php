@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\accueil;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +18,11 @@ Route::get('/', function () {
     return view('accueil');
 });
 
-Route::get('/diplome', function () {
-    return view('diplome');
-});
+Route::get('/diplome', [accueil::class, 'fonctionDiplome']);
 
-Route::get('/programme', function () {
-    return view('programme');
-});
+Route::get('/programme', [accueil::class, 'fonctionProgramme']);
 
-Route::get('/cours', function () {
-    return view('cours');
-});
+Route::get('/cours', [accueil::class, 'fonctionCours']);
 
 Route::get('/gestionDemandeMobilite', function () {
     return view('gestionDemandeMobilite');
@@ -44,3 +39,5 @@ Route::get('/gestionDemandeFinancement', function () {
 Route::get('/utilisateur', function () {
     return view('utilisateur');
 });
+
+// Route::get('/diplome', [accueil::class, 'index']);
