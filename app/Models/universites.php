@@ -2,36 +2,25 @@
 
 namespace App\Models;
 
-use App\Diplome;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property int $codeU
- * @property string $nomU
- * @property string $villeU
- * @property string $paysU
- * @property string $webU
- * @property Diplome[] $diplomes
- */
 class universites extends Model
 {
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'codeU';
+    protected $table = 'universites'; // Table du modèle
+    protected $primaryKey = 'codeU'; // Clé primaire
+    protected $connexion = 'mysql'; //Connexion à utiliser
+    public $timestamps = false;
+    protected $fillable = [
+        'codeU',
+        'nomU',
+        'villeU',
+        'paysU',
+        'webU',
+    ];
 
-    /**
-     * @var array
-     */
-    protected $fillable = ['nomU', 'villeU', 'paysU', 'webU'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    // Relation avec la table diplomes
     public function diplomes()
     {
-        return $this->hasMany('App\Diplome', 'codeU', 'codeU');
+        return $this->belongsTo(diplomes::class, 'codeU');
     }
 }

@@ -2,56 +2,25 @@
 
 namespace App\Models;
 
-use App\Cour;
-use App\Demandesmobilite;
-use App\Diplome;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property int $codeCours
- * @property string $LibelleCours
- * @property string $nbECTS
- * @property int $annee
- * @property int $codeDiplome
- * @property Diplome $diplome
- * @property Cour[] $cours
- * @property Demandesmobilite[] $demandesmobilites
- */
 class cours extends Model
 {
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'codeCours';
+    protected $table = 'cours'; // Table du modèle
+    protected $primaryKey = 'codeCours'; // Clé primaire
+    protected $connexion = 'mysql'; //Connexion à utiliser
+    public $timestamps = false;
+    protected $fillable = [
+        'codeCours',
+        'LibelleCours',
+        'nbECTS',
+        'annee',
+        'codeDiplome',
+    ];
 
-    /**
-     * @var array
-     */
-    protected $fillable = ['LibelleCours', 'nbECTS', 'annee', 'codeDiplome'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function diplome()
+    // Relation avec la table diplomes
+    public function diplomes()
     {
-        return $this->belongsTo('App\Diplome', 'codeDiplome', 'codeDiplome');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function cours()
-    {
-        return $this->belongsToMany('App\Cour', 'compatible', 'codeCours', 'codeCours_1');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function demandesmobilites()
-    {
-        return $this->belongsToMany('App\Demandesmobilite', 'concerner', 'codeCours', 'codeDemandeM');
+        return $this->belongsTo(diplomes::class, 'codeDiplome');
     }
 }
