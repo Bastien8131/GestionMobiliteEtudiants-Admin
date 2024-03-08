@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Mon Site</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 </head>
 <body>
 @include('includes.header')
