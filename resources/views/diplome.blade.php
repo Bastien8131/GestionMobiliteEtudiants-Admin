@@ -25,9 +25,12 @@
                                 Aucune université associée
                             @endif
                         </td>
+                        <td><a href="{{ route('diplome.editDiplome', $diplome->codeDiplome) }}">Modifier</a></td>
+                        <td><a href="{{ route('diplome.confirmation', $diplome->codeDiplome) }}">Supprimer</a></td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <a href="{{ route('diplome.createDiplome') }}">Ajouter un diplôme</a>
     </main>
 @endsection

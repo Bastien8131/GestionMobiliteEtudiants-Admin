@@ -25,9 +25,12 @@
                                 Aucun diplome associée
                             @endif
                         </td>
+                        <td><a href="{{ route('programme.editProgramme', $programme->codeProgramme) }}">Modifier</a></td>
+                        <td><a href="{{ route('programme.confirmation', $programme->codeProgramme) }}">Supprimer</a></td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <a href="{{ route('programme.createProgramme') }}">Ajouter un programme</a>
     </main>
 @endsection

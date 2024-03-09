@@ -27,9 +27,12 @@
                                 Aucun diplome associée
                             @endif
                         </td>
+                        <td><a href="{{ route('cours.editCours', $cours->codeCours) }}">Modifier</a></td>
+                        <td><a href="{{ route('cours.confirmation', $cours->codeCours) }}">Supprimer</a></td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <a href="{{ route('cours.createCours') }}">Ajouter un cours</a>
     </main>
 @endsection
