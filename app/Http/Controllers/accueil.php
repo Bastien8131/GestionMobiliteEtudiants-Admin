@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+//use App\Models\;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\diplomes;
 use App\Models\universites;
 use App\Models\programmes;
@@ -15,7 +17,7 @@ class accueil extends Controller
     {
         $diplomes = diplomes::with('universites')->get();
         $universites = universites::all();
-    
+
         return view('diplome', compact('diplomes', 'universites'));
     }
 
@@ -94,7 +96,7 @@ class accueil extends Controller
     {
         $programmes = programmes::with('diplomes')->get();
         $diplomes = diplomes::all();
-    
+
         return view('programme', compact('programmes', 'diplomes'));
     }
 
@@ -175,7 +177,7 @@ class accueil extends Controller
     {
         $cours = cours::with('diplomes')->get();
         $diplomes = diplomes::all();
-    
+
         return view('cours', compact('cours', 'diplomes'));
     }
 
@@ -251,5 +253,26 @@ class accueil extends Controller
         $cours = cours::findOrFail($id);
         $cours->delete();
         return redirect()->route('cours.index')->with('success', 'Cours supprimé avec succès');
+    }
+
+    public function demandeMobilites(){
+        $demandeMobilites = DB::select('SELECT * FROM demandesmobilite');
+        return view('gestionDemandeMobilite')
+            ->with('demandeMobilites', $demandeMobilites)
+            ;
+    }
+
+    public function consulterContrats(){
+        $listeContrats = DB::select('SELECT * FROM contrats');
+        return view('listeContrats')
+            ->with('listeContrats', $listeContrats)
+            ;
+    }
+
+    public function demandeFinancement(){
+        $demandeFinancements = DB::select('SELECT * FROM demandesfinancement');
+        return view('gestionDemandeFinancement')
+            ->with('demandeFinancements', $demandeFinancements)
+            ;
     }
 }

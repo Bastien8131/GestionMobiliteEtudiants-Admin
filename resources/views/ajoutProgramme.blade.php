@@ -1,25 +1,37 @@
 @extends('layouts.main')
-<title>Ajouter un programme</title>
+@section('title', 'Ajouter un programme')
 @section('content')
-    <main>
-        <h1>Ajouter un programme</h1>
-        <form method="post" action="{{ route('programme.storeProgramme') }}">
-            @csrf
+    <main class="container">
+        <h1 class="mt-5">Ajouter un programme</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="{{ route('programme.storeProgramme') }}">
+                    @csrf
 
-            <label for="nomProgramme">Nom du programme:</label>
-            <input type="text" id="nomProgramme" name="nomProgramme" required>
+                    <div class="form-group">
+                        <label for="nomProgramme">Nom du programme:</label>
+                        <input type="text" class="form-control" id="nomProgramme" name="nomProgramme" required>
+                    </div>
 
-            <label for="dureeEchange">Durée échange:</label>
-            <input type="text" id="dureeEchange" name="dureeEchange" required>
+                    <div class="form-group">
+                        <label for="dureeEchange">Durée échange:</label>
+                        <input type="text" class="form-control" id="dureeEchange" name="dureeEchange" required>
+                    </div>
 
-            <label for="codeDiplome">Code du diplôme:</label>
-            <input type="text" id="codeDiplome" name="codeDiplome" required>
+                    <div class="form-group">
+                        <label for="codeDiplome">Code du diplôme:</label>
+                        <input type="text" class="form-control" id="codeDiplome" name="codeDiplome" required>
+                    </div>
 
-            <label for="codeDiplome_1">Code du diplôme 1:</label>
-            <input type="text" id="codeDiplome_1" name="codeDiplome_1" required>
+                    <div class="form-group">
+                        <label for="codeDiplome_1">Code du diplôme 1:</label>
+                        <input type="text" class="form-control" id="codeDiplome_1" name="codeDiplome_1" required>
+                    </div>
 
-            <button type="submit">Ajouter le programme</button>
-            <a href="{{ url('/programme') }}">Annuler</a>
-        </form>
+                    <button type="submit" class="btn btn-primary">Ajouter le programme</button>
+                    <a href="{{ url('/programme') }}" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection

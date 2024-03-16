@@ -1,18 +1,20 @@
 @extends('layouts.main')
-<title>Gestion des programmes</title>
+@section('title', 'Gestion des programmes')
 @section('content')
-    <main>
-        <h1>Gestion des programmes</h1>
-        <table>
-            <thead>
+    <main class="container">
+        <h1 class="mt-5">Gestion des programmes</h1>
+        <div class="table-responsive mt-3">
+            <table class="table">
+                <thead>
                 <tr>
                     <th>Code</th>
                     <th>Nom programme</th>
                     <th>Durée échange</th>
                     <th>Nom diplôme</th>
+                    <th>Actions</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach ($programmes as $programme)
                     <tr>
                         <td>{{ $programme->codeProgramme }}</td>
@@ -22,15 +24,18 @@
                             @if ($programme->diplomes)
                                 {{ $programme->diplomes->nomDiplome }}
                             @else
-                                Aucun diplome associée
+                                Aucun diplôme associé
                             @endif
                         </td>
-                        <td><a href="{{ route('programme.editProgramme', $programme->codeProgramme) }}">Modifier</a></td>
-                        <td><a href="{{ route('programme.confirmation', $programme->codeProgramme) }}">Supprimer</a></td>
+                        <td>
+                            <a href="{{ route('programme.editProgramme', $programme->codeProgramme) }}" class="btn btn-primary">Modifier</a>
+                            <a href="{{ route('programme.confirmation', $programme->codeProgramme) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
-        <a href="{{ route('programme.createProgramme') }}">Ajouter un programme</a>
+                </tbody>
+            </table>
+        </div>
+        <a href="{{ route('programme.createProgramme') }}" class="btn btn-success">Ajouter un programme</a>
     </main>
 @endsection

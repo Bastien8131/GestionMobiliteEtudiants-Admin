@@ -1,22 +1,32 @@
 @extends('layouts.main')
-<title>Ajouter un diplôme</title>
+@section('title', 'Ajouter un diplôme')
 @section('content')
-    <main>
-        <h1>Ajouter un diplôme</h1>
-        <form method="post" action="{{ route('diplome.storeDiplome') }}">
-            @csrf
+    <main class="container">
+        <h1 class="mt-5">Ajouter un diplôme</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="{{ route('diplome.storeDiplome') }}">
+                    @csrf
 
-            <label for="nomDiplome">Nom du diplôme:</label>
-            <input type="text" id="nomDiplome" name="nomDiplome" required>
+                    <div class="form-group">
+                        <label for="nomDiplome">Nom du diplôme:</label>
+                        <input type="text" class="form-control" id="nomDiplome" name="nomDiplome" required>
+                    </div>
 
-            <label for="niveauDiplome">Niveau du diplôme:</label>
-            <input type="text" id="niveauDiplome" name="niveauDiplome" required>
+                    <div class="form-group">
+                        <label for="niveauDiplome">Niveau du diplôme:</label>
+                        <input type="text" class="form-control" id="niveauDiplome" name="niveauDiplome" required>
+                    </div>
 
-            <label for="codeU">Code de l'université:</label>
-            <input type="text" id="codeU" name="codeU" required>
+                    <div class="form-group">
+                        <label for="codeU">Code de l'université:</label>
+                        <input type="text" class="form-control" id="codeU" name="codeU" required>
+                    </div>
 
-            <button type="submit">Ajouter le diplôme</button>
-            <a href="{{ url('/diplome') }}">Annuler</a>
-        </form>
+                    <button type="submit" class="btn btn-primary">Ajouter le diplôme</button>
+                    <a href="{{ url('/diplome') }}" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection

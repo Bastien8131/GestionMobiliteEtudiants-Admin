@@ -1,7 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\accueil;
+use App\Http\Controllers\contrat;
+use App\Http\Controllers\gestionFinancement;
+use App\Http\Controllers\gestionMobilite;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,17 +68,17 @@ Route::delete('/cours/{id}', [accueil::class, 'destroyCours'])->name('cours.dest
 
 
 
-Route::get('/gestionDemandeMobilite', function () {
-    return view('gestionDemandeMobilite');
-});
+Route::get('/gestionDemandeMobilite', [accueil::class, 'demandeMobilites']);
+Route::get('gestionDemandeMobilite/{action}/{codeDemande}', [gestionMobilite::class, 'changerEtat'])->name('demandeMobilite.changerEtat');
 
-Route::get('/contrat', function () {
-    return view('contrat');
-});
 
-Route::get('/gestionDemandeFinancement', function () {
-    return view('gestionDemandeFinancement');
-});
+
+Route::get('/contrat', [accueil::class, 'consulterContrats']);
+Route::get('/contrat/{id}', [contrat::class, 'afficherContrat'])->name('contrat.afficher');
+
+Route::get('/gestionDemandeFinancement', [accueil::class, 'demandeFinancement']);
+Route::get('gestionDemandeFinancement/valider/{codeDemandeF}', [gestionFinancement::class, 'valider'])->name('demandeFinancement.valider');
+Route::get('gestionDemandeFinancement/rejeter/{codeDemandeF}', [gestionFinancement::class, 'rejeter'])->name('demandeFinancement.rejeter');
 
 Route::get('/utilisateur', function () {
     return view('utilisateur');

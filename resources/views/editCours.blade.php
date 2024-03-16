@@ -1,23 +1,33 @@
 @extends('layouts.main')
-<title>Modifier le cours</title>
+@section('title', 'Modifier le cours')
 @section('content')
-    <main>
-        <h1>Modifier le cours</h1>
-        <form method="post" action="{{ route('cours.updateCours', $cours->codeCours) }}">
-            @csrf
-            @method('PUT')
+    <main class="container">
+        <h1 class="mt-5">Modifier le cours</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="{{ route('cours.updateCours', $cours->codeCours) }}">
+                    @csrf
+                    @method('PUT')
 
-            <label for="LibelleCours">Nom du cours:</label>
-            <input type="text" id="LibelleCours" name="LibelleCours" value="{{ $cours->LibelleCours }}" required>
+                    <div class="form-group">
+                        <label for="LibelleCours">Nom du cours:</label>
+                        <input type="text" class="form-control" id="LibelleCours" name="LibelleCours" value="{{ $cours->LibelleCours }}" required>
+                    </div>
 
-            <label for="nbECTS">ECTS:</label>
-            <input type="text" id="nbECTS" name="nbECTS" value="{{ $cours->nbECTS }}" required>
+                    <div class="form-group">
+                        <label for="nbECTS">ECTS:</label>
+                        <input type="text" class="form-control" id="nbECTS" name="nbECTS" value="{{ $cours->nbECTS }}" required>
+                    </div>
 
-            <label for="annee">Année:</label>
-            <input type="text" id="annee" name="annee" value="{{ $cours->annee }}" required>
+                    <div class="form-group">
+                        <label for="annee">Année:</label>
+                        <input type="text" class="form-control" id="annee" name="annee" value="{{ $cours->annee }}" required>
+                    </div>
 
-            <button type="submit">Enregistrer les modifications</button>
-            <a href="{{ url('/cours') }}">Annuler</a>
-        </form>
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <a href="{{ url('/cours') }}" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection

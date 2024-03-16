@@ -1,20 +1,28 @@
 @extends('layouts.main')
-<title>Modifier le programme</title>
+@section('title', 'Modifier le programme')
 @section('content')
-    <main>
-        <h1>Modifier le programme</h1>
-        <form method="post" action="{{ route('programme.updateProgramme', $programme->codeProgramme) }}">
-            @csrf
-            @method('PUT')
+    <main class="container">
+        <h1 class="mt-5">Modifier le programme</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="{{ route('programme.updateProgramme', $programme->codeProgramme) }}">
+                    @csrf
+                    @method('PUT')
 
-            <label for="nomProgramme">Nom du programme:</label>
-            <input type="text" id="nomProgramme" name="nomProgramme" value="{{ $programme->nomProgramme }}" required>
+                    <div class="form-group">
+                        <label for="nomProgramme">Nom du programme:</label>
+                        <input type="text" class="form-control" id="nomProgramme" name="nomProgramme" value="{{ $programme->nomProgramme }}" required>
+                    </div>
 
-            <label for="dureeEchange">Durée échange:</label>
-            <input type="text" id="dureeEchange" name="dureeEchange" value="{{ $programme->dureeEchange }}" required>
+                    <div class="form-group">
+                        <label for="dureeEchange">Durée échange:</label>
+                        <input type="text" class="form-control" id="dureeEchange" name="dureeEchange" value="{{ $programme->dureeEchange }}" required>
+                    </div>
 
-            <button type="submit">Enregistrer les modifications</button>
-            <a href="{{ url('/programme') }}">Annuler</a>
-        </form>
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <a href="{{ url('/programme') }}" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection

@@ -1,20 +1,28 @@
 @extends('layouts.main')
-<title>Modifier le diplôme</title>
+@section('title', 'Modifier le diplôme')
 @section('content')
-    <main>
-        <h1>Modifier le diplôme</h1>
-        <form method="post" action="{{ route('diplome.updateDiplome', $diplome->codeDiplome) }}">
-            @csrf
-            @method('PUT')
+    <main class="container">
+        <h1 class="mt-5">Modifier le diplôme</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="{{ route('diplome.updateDiplome', $diplome->codeDiplome) }}">
+                    @csrf
+                    @method('PUT')
 
-            <label for="nomDiplome">Nom du diplôme:</label>
-            <input type="text" id="nomDiplome" name="nomDiplome" value="{{ $diplome->nomDiplome }}" required>
+                    <div class="form-group">
+                        <label for="nomDiplome">Nom du diplôme:</label>
+                        <input type="text" class="form-control" id="nomDiplome" name="nomDiplome" value="{{ $diplome->nomDiplome }}" required>
+                    </div>
 
-            <label for="niveauDiplome">Niveau du diplôme:</label>
-            <input type="text" id="niveauDiplome" name="niveauDiplome" value="{{ $diplome->niveauDiplome }}" required>
+                    <div class="form-group">
+                        <label for="niveauDiplome">Niveau du diplôme:</label>
+                        <input type="text" class="form-control" id="niveauDiplome" name="niveauDiplome" value="{{ $diplome->niveauDiplome }}" required>
+                    </div>
 
-            <button type="submit">Enregistrer les modifications</button>
-            <a href="{{ url('/diplome') }}">Annuler</a>
-        </form>
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <a href="{{ url('/diplome') }}" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection

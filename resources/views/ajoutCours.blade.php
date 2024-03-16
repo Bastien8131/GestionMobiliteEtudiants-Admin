@@ -1,25 +1,37 @@
 @extends('layouts.main')
-<title>Ajouter un cours</title>
+@section('title', 'Ajouter un cours')
 @section('content')
-    <main>
-        <h1>Ajouter un cours</h1>
-        <form method="post" action="{{ route('cours.storeCours') }}">
-            @csrf
+    <main class="container">
+        <h1 class="mt-5">Ajouter un cours</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="{{ route('cours.storeCours') }}">
+                    @csrf
 
-            <label for="LibelleCours">Nom du cours:</label>
-            <input type="text" id="LibelleCours" name="LibelleCours" required>
+                    <div class="form-group">
+                        <label for="LibelleCours">Nom du cours:</label>
+                        <input type="text" class="form-control" id="LibelleCours" name="LibelleCours" required>
+                    </div>
 
-            <label for="nbECTS">ECTS:</label>
-            <input type="text" id="nbECTS" name="nbECTS" required>
+                    <div class="form-group">
+                        <label for="nbECTS">ECTS:</label>
+                        <input type="text" class="form-control" id="nbECTS" name="nbECTS" required>
+                    </div>
 
-            <label for="annee">Année:</label>
-            <input type="text" id="annee" name="annee" required>
+                    <div class="form-group">
+                        <label for="annee">Année:</label>
+                        <input type="text" class="form-control" id="annee" name="annee" required>
+                    </div>
 
-            <label for="codeDiplome">Code du diplôme:</label>
-            <input type="text" id="codeDiplome" name="codeDiplome" required>
+                    <div class="form-group">
+                        <label for="codeDiplome">Code du diplôme:</label>
+                        <input type="text" class="form-control" id="codeDiplome" name="codeDiplome" required>
+                    </div>
 
-            <button type="submit">Ajouter le cours</button>
-            <a href="{{ url('/cours') }}">Annuler</a>
-        </form>
+                    <button type="submit" class="btn btn-primary">Ajouter le cours</button>
+                    <a href="{{ url('/cours') }}" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
     </main>
 @endsection
