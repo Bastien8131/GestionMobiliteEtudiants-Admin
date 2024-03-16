@@ -31,8 +31,8 @@ class accueil extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-            'nomDiplome' => 'required|string|max:50',
-            'niveauDiplome' => 'required|string|max:50',
+            'nomDiplome' => 'required|string|max:250',
+            'niveauDiplome' => 'required|string|max:250',
         ]);
 
         // Récupération du diplôme existant
@@ -59,9 +59,9 @@ class accueil extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-            'nomDiplome' => 'required|string|max:50',
-            'niveauDiplome' => 'required|string|max:50',
-            'codeU' => 'required|int|max:50',
+            'nomDiplome' => 'required|string|max:250',
+            'niveauDiplome' => 'required|string|max:250',
+            'codeU' => 'required|int|max:250',
         ]);
 
         // Création d'une nouvelle instance de diplome
@@ -110,8 +110,8 @@ class accueil extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-            'nomProgramme' => 'required|string|max:50',
-            'dureeEchange' => 'required|int|max:50',
+            'nomProgramme' => 'required|string|max:250',
+            'dureeEchange' => 'required|int|max:999',
         ]);
 
         // Récupération du programme existant
@@ -138,10 +138,10 @@ class accueil extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-            'nomProgramme' => 'required|string|max:50',
-            'dureeEchange' => 'required|int|max:50',
-            'codeDiplome' => 'required|int|max:50',
-            'codeDiplome_1' => 'required|int|max:50',
+            'nomProgramme' => 'required|string|max:250',
+            'dureeEchange' => 'required|int|max:999',
+            'codeDiplome' => 'required|int|max:250',
+            'codeDiplome_1' => 'required|int|max:250',
         ]);
 
         // Création d'une nouvelle instance de programme
@@ -191,9 +191,9 @@ class accueil extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-            'LibelleCours' => 'required|string|max:50',
+            'LibelleCours' => 'required|string|max:250',
             'nbECTS' => 'required|int|max:50',
-            'annee' => 'required|int|max:50',
+            'annee' => 'required|int|max:9999',
         ]);
 
         // Récupération du cours existant
@@ -221,10 +221,10 @@ class accueil extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-            'LibelleCours' => 'required|string|max:50',
+            'LibelleCours' => 'required|string|max:250',
             'nbECTS' => 'required|int|max:50',
-            'annee' => 'required|int|max:50',
-            'codeDiplome' => 'required|int|max:50',
+            'annee' => 'required|int|max:9999',
+            'codeDiplome' => 'required|int|max:250',
         ]);
 
         // Création d'une nouvelle instance de cours
