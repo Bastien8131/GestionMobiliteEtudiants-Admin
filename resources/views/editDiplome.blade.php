@@ -19,6 +19,11 @@
                         <input type="text" class="form-control" id="niveauDiplome" name="niveauDiplome" value="{{ $diplome->niveauDiplome }}" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="codeU">Code de l'université:</label>
+                        <input type="text" class="form-control" id="codeU" name="codeU" value="{{ $diplome->codeU }}" required>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
                     <a href="{{ url('/diplome') }}" class="btn btn-secondary">Annuler</a>
                 </form>

@@ -24,6 +24,11 @@
                         <input type="text" class="form-control" id="annee" name="annee" value="{{ $cours->annee }}" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="codeDiplome">Code du diplôme:</label>
+                        <input type="text" class="form-control" id="codeDiplome" name="codeDiplome" value="{{ $cours->codeDiplome }}" required>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
                     <a href="{{ url('/cours') }}" class="btn btn-secondary">Annuler</a>
                 </form>
