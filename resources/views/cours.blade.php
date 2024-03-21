@@ -39,5 +39,6 @@
             </table>
         </div>
         <a href="{{ route('cours.createCours') }}" class="btn btn-success">Ajouter un cours</a>
+        <a href="{{ url('/coursDiplome') }}" class="text-center mt-5 btn btn-success">Consulter les cours par diplôme</a>
     </main>
 @endsection

@@ -18,3 +18,7 @@ nav{
     color: #ffffff;
 }
 
+.diplomeUniv {
+    display: flex;
+    flex-direction: column;
+}

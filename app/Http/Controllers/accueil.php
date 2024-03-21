@@ -33,6 +33,7 @@ class accueil extends Controller
         $request->validate([
             'nomDiplome' => 'required|string|max:250',
             'niveauDiplome' => 'required|string|max:250',
+            'codeU' => 'required|int|max:250',
         ]);
 
         // Récupération du diplôme existant
@@ -41,6 +42,7 @@ class accueil extends Controller
         // Mise à jour des données du diplôme
         $diplome->nomDiplome = $request->nomDiplome;
         $diplome->niveauDiplome = $request->niveauDiplome;
+        $diplome->codeU = $request->codeU;
 
         // Sauvegarde des modifications
         $diplome->save();
@@ -91,6 +93,18 @@ class accueil extends Controller
         return redirect()->route('diplome.index')->with('success', 'Diplôme supprimé avec succès');
     }
 
+       
+    public function diplomesParUniv($universiteId = null)
+    {
+        $universites = universites::all();
+        $selectedUniversite = $universiteId ? universites::find($universiteId) : null;
+        
+        // Récupérer les diplômes associés à l'université sélectionnée, si elle est définie
+        $diplomes = $selectedUniversite ? $selectedUniversite->diplomes : collect();
+    
+        return view('diplomeUniv', compact('universites', 'selectedUniversite', 'diplomes'));
+    }
+
     // Partie programme
     public function fonctionProgramme()
     {
@@ -112,6 +126,7 @@ class accueil extends Controller
         $request->validate([
             'nomProgramme' => 'required|string|max:250',
             'dureeEchange' => 'required|int|max:999',
+            'codeDiplome' => 'required|int|max:250',
         ]);
 
         // Récupération du programme existant
@@ -120,6 +135,7 @@ class accueil extends Controller
         // Mise à jour des données du programme
         $programme->nomProgramme = $request->nomProgramme;
         $programme->dureeEchange = $request->dureeEchange;
+        $programme->codeDiplome = $request->codeDiplome;
 
         // Sauvegarde des modifications
         $programme->save();
@@ -194,6 +210,7 @@ class accueil extends Controller
             'LibelleCours' => 'required|string|max:250',
             'nbECTS' => 'required|int|max:50',
             'annee' => 'required|int|max:9999',
+            'codeDiplome' => 'required|int|max:250',
         ]);
 
         // Récupération du cours existant
@@ -203,6 +220,7 @@ class accueil extends Controller
         $cours->LibelleCours = $request->LibelleCours;
         $cours->nbECTS = $request->nbECTS;
         $cours->annee = $request->annee;
+        $cours->codeDiplome = $request->codeDiplome;
 
         // Sauvegarde des modifications
         $cours->save();
@@ -253,6 +271,17 @@ class accueil extends Controller
         $cours = cours::findOrFail($id);
         $cours->delete();
         return redirect()->route('cours.index')->with('success', 'Cours supprimé avec succès');
+    }
+
+    public function coursParDiplome($diplomeId = null)
+    {
+        $diplomes = diplomes::all();
+        $selectedDiplome = $diplomeId ? diplomes::find($diplomeId) : null;
+        
+        // Récupérer les cours associés au diplome sélectionnée, si elle est définie
+        $cours = $selectedDiplome ? $selectedDiplome->cours : collect();
+    
+        return view('coursDiplome', compact('diplomes', 'selectedDiplome', 'cours'));
     }
 
     public function demandeMobilites(){

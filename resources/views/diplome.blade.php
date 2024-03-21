@@ -34,6 +34,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="{{ route('diplome.createDiplome') }}" class="btn btn-success">Ajouter un diplôme</a>
+        <a href="{{ route('diplome.createDiplome') }}" class="btn btn-success">Ajouter un diplôme</a><br>
+        <a href="{{ url('/diplomeUniv') }}" class="text-center mt-5 btn btn-success">Consulter les diplômes par université</a>
     </main>
 @endsection

@@ -21,6 +21,6 @@ class universites extends Model
     // Relation avec la table diplomes
     public function diplomes()
     {
-        return $this->belongsTo(diplomes::class, 'codeU');
+        return $this->hasMany(diplomes::class, 'codeU');
     }
 }
