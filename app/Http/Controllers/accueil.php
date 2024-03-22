@@ -27,27 +27,28 @@ class accueil extends Controller
         return view('editDiplome', compact('diplome'));
     }
 
+    // Fonction updateDiplome() qui permet de mettre à jour les données d'un diplôme sélectionné dans le formulaire
     public function updateDiplome(Request $request, $id)
     {
-        // Validation des données du formulaire
+        // On valide les données du formulaire
         $request->validate([
             'nomDiplome' => 'required|string|max:250',
             'niveauDiplome' => 'required|string|max:250',
             'codeU' => 'required|int|max:250',
         ]);
 
-        // Récupération du diplôme existant
+        // On récupère le diplôme que l'on souhaite modifier
         $diplome = diplomes::findOrFail($id);
 
-        // Mise à jour des données du diplôme
+        // On met à jour les données du diplôme
         $diplome->nomDiplome = $request->nomDiplome;
         $diplome->niveauDiplome = $request->niveauDiplome;
         $diplome->codeU = $request->codeU;
 
-        // Sauvegarde des modifications
+        // On sauvegarde les modifications
         $diplome->save();
 
-        // Redirection avec un message de succès
+        // On redirige vers la page de gestion des diplômes
         return redirect()->route('diplome.index')->with('success', 'Diplôme mis à jour avec succès');
     }
 
@@ -59,24 +60,21 @@ class accueil extends Controller
 
     public function storeDiplome(Request $request)
     {
-        // Validation des données du formulaire
         $request->validate([
             'nomDiplome' => 'required|string|max:250',
             'niveauDiplome' => 'required|string|max:250',
             'codeU' => 'required|int|max:250',
         ]);
 
-        // Création d'une nouvelle instance de diplome
+        // On crée une nouvelle instance de diplome
         $nouveauDiplome = new diplomes([
             'nomDiplome' => $request->nomDiplome,
             'niveauDiplome' => $request->niveauDiplome,
             'codeU' => $request->codeU,
         ]);
 
-        // Sauvegarde du nouveau diplôme
         $nouveauDiplome->save();
 
-        // Redirection avec un message de succès
         return redirect()->route('diplome.index')->with('success', 'Diplôme ajouté avec succès');
     }
 
@@ -99,7 +97,7 @@ class accueil extends Controller
         $universites = universites::all();
         $selectedUniversite = $universiteId ? universites::find($universiteId) : null;
         
-        // Récupérer les diplômes associés à l'université sélectionnée, si elle est définie
+        // On récupère les diplômes associés à l'université sélectionnée
         $diplomes = $selectedUniversite ? $selectedUniversite->diplomes : collect();
     
         return view('diplomeUniv', compact('universites', 'selectedUniversite', 'diplomes'));
@@ -122,25 +120,20 @@ class accueil extends Controller
 
     public function updateProgramme(Request $request, $id)
     {
-        // Validation des données du formulaire
         $request->validate([
             'nomProgramme' => 'required|string|max:250',
             'dureeEchange' => 'required|int|max:999',
             'codeDiplome' => 'required|int|max:250',
         ]);
 
-        // Récupération du programme existant
         $programme = programmes::findOrFail($id);
 
-        // Mise à jour des données du programme
         $programme->nomProgramme = $request->nomProgramme;
         $programme->dureeEchange = $request->dureeEchange;
         $programme->codeDiplome = $request->codeDiplome;
 
-        // Sauvegarde des modifications
         $programme->save();
 
-        // Redirection avec un message de succès
         return redirect()->route('programme.index')->with('success', 'Programme mis à jour avec succès');
     }
 
@@ -152,7 +145,6 @@ class accueil extends Controller
 
     public function storeProgramme(Request $request)
     {
-        // Validation des données du formulaire
         $request->validate([
             'nomProgramme' => 'required|string|max:250',
             'dureeEchange' => 'required|int|max:999',
@@ -160,7 +152,6 @@ class accueil extends Controller
             'codeDiplome_1' => 'required|int|max:250',
         ]);
 
-        // Création d'une nouvelle instance de programme
         $nouveauProgramme = new programmes([
             'nomProgramme' => $request->nomProgramme,
             'dureeEchange' => $request->dureeEchange,
@@ -168,10 +159,8 @@ class accueil extends Controller
             'codeDiplome_1' => $request->codeDiplome_1,
         ]);
 
-        // Sauvegarde du nouveau programme
         $nouveauProgramme->save();
 
-        // Redirection avec un message de succès
         return redirect()->route('programme.index')->with('success', 'Programme ajouté avec succès');
     }
 
@@ -205,7 +194,6 @@ class accueil extends Controller
 
     public function updateCours(Request $request, $id)
     {
-        // Validation des données du formulaire
         $request->validate([
             'LibelleCours' => 'required|string|max:250',
             'nbECTS' => 'required|int|max:50',
@@ -213,19 +201,15 @@ class accueil extends Controller
             'codeDiplome' => 'required|int|max:250',
         ]);
 
-        // Récupération du cours existant
         $cours = cours::findOrFail($id);
 
-        // Mise à jour des données du cours
         $cours->LibelleCours = $request->LibelleCours;
         $cours->nbECTS = $request->nbECTS;
         $cours->annee = $request->annee;
         $cours->codeDiplome = $request->codeDiplome;
 
-        // Sauvegarde des modifications
         $cours->save();
 
-        // Redirection avec un message de succès
         return redirect()->route('cours.index')->with('success', 'Cours mis à jour avec succès');
     }
 
@@ -237,7 +221,6 @@ class accueil extends Controller
 
     public function storeCours(Request $request)
     {
-        // Validation des données du formulaire
         $request->validate([
             'LibelleCours' => 'required|string|max:250',
             'nbECTS' => 'required|int|max:50',
@@ -245,7 +228,6 @@ class accueil extends Controller
             'codeDiplome' => 'required|int|max:250',
         ]);
 
-        // Création d'une nouvelle instance de cours
         $nouveauCours = new cours([
             'LibelleCours' => $request->LibelleCours,
             'nbECTS' => $request->nbECTS,
@@ -253,10 +235,8 @@ class accueil extends Controller
             'codeDiplome' => $request->codeDiplome,
         ]);
 
-        // Sauvegarde du nouveau cours
         $nouveauCours->save();
 
-        // Redirection avec un message de succès
         return redirect()->route('cours.index')->with('success', 'Cours ajouté avec succès');
     }
 
@@ -278,7 +258,7 @@ class accueil extends Controller
         $diplomes = diplomes::all();
         $selectedDiplome = $diplomeId ? diplomes::find($diplomeId) : null;
         
-        // Récupérer les cours associés au diplome sélectionnée, si elle est définie
+        // On récupère les cours associés au diplome sélectionnée
         $cours = $selectedDiplome ? $selectedDiplome->cours : collect();
     
         return view('coursDiplome', compact('diplomes', 'selectedDiplome', 'cours'));

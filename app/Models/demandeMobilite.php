@@ -8,7 +8,7 @@ class demandeMobilite extends Model
 {
     protected $table = 'demandesmobilite';
     protected $primaryKey = 'codeDemandeM';
-    public $timestamps = false; // Si vous n'avez pas de colonnes created_at et updated_at
+    public $timestamps = false;
 
     protected $fillable = [
         'dateDepotDemandeM',
@@ -16,6 +16,4 @@ class demandeMobilite extends Model
         'numEtudiant',
         'codeProgramme'
     ];
-
-    // Vous pouvez définir des relations ici si nécessaire
 }
