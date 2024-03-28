@@ -1,3 +1,7 @@
+<?php
+    $url = url()->current();
+    if (!strpos($url, '/contrat/')) { ?>
+
 <header class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <h1 class="navbar-brand">Gestion de la Mobilité des Etudiants : <span class="text-muted">Panel administrateur</span></h1>
@@ -13,3 +17,4 @@
         </div>
     </div>
 </header>
+<?php } ?>
